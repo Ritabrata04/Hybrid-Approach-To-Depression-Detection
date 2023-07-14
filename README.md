@@ -1,55 +1,50 @@
-# Depression Detection Using LSTM and GRU
+# Deep Learning for Depression Detection
 
-This repository houses a project focused on detecting signs of depression using text data. The project uses two powerful Recurrent Neural Network (RNN) architectures, Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU), both highly effective for sequential data like text. 
+This repository is dedicated to an investigation of various Deep Learning techniques for depression detection in text data. The techniques explored include several variants of Recurrent Neural Networks (RNNs) such as Long Short-Term Memory (LSTM), Gated Recurrent Unit (GRU), Bidirectional LSTM (BiLSTM), Transformer model using BERT (Bidirectional Encoder Representations from Transformers), and a simple Feed-Forward Neural Network (FFNN) used as a baseline model. 
 
-## Project Overview
+## Dataset
 
-This project employs natural language processing (NLP) and deep learning techniques to build a model that can potentially identify depressive indications in text data. It leverages LSTM and GRU, two types of RNNs, which are commonly used in tasks involving sequential data.
+The dataset used is a collection of text data gathered from different threads of depression-related discussions. Each sample has been labeled as either "depression" or "non-depression" based on the content of the discussion. The text has been preprocessed to be in a suitable format for analysis by various machine learning algorithms.
 
-**Long Short-Term Memory (LSTM)**: LSTM networks are a type of RNN that use special units in addition to standard units. LSTM units include a 'memory cell' that can maintain information in memory for long periods of time. This mitigates the vanishing gradient problem encountered with traditional RNNs and makes LSTM networks ideal for learning from important experiences that have very long time lags.
+## Models
 
-**Gated Recurrent Unit (GRU)**: The GRU is the newer generation of RNN and is pretty similar to an LSTM. GRU's got rid of the cell state and used the hidden state to transfer information. It also only has two gates, a reset gate and update gate, making it simpler and often more efficient computationally.
+The models used in the study include:
 
-## Repository Contents
+1. **GRU:** This model utilizes a Gated Recurrent Unit architecture, a variant of RNNs, which is capable of preserving long-term dependencies in sequence data while being computationally more efficient than traditional LSTMs.
 
-- `DEPRESSION_DETECTION_USING_LSTM.py`: The Python script contains all the steps involved in the project from data cleaning, tokenization, and sequencing to training and evaluation of LSTM and GRU models.
+2. **LSTM:** The Long Short-Term Memory model is another variant of RNNs. It effectively captures long-term dependencies in sequence data by maintaining a separate memory cell that updates and exposes its content only when deemed necessary.
 
-- `LICENSE`: The license file states the terms under which this project is distributed.
+3. **BiLSTM:** The Bidirectional LSTM model is an extension of traditional LSTM. It processes the data in both forward and backward directions to keep the context from both past and future data.
 
-- `dataset distribution.png`: A visual overview of the distribution of the dataset.
+4. **BERT:** BERT is a Transformer model specifically designed for NLP tasks. It uses bidirectional training of transformers, which allows for a deep understanding of the context of a word based on all its surroundings (left and right of the word).
 
-- `depression_dataset_reddit_cleaned.csv.zip`: This compressed file contains a preprocessed dataset obtained from Reddit discussions related to depression.
+5. **FFNN (Baseline):** This is a simple Feed-Forward Neural Network used as a baseline model for the comparison of the performance of other complex models.
 
-- `gru confusion matrix.png`: A confusion matrix of the GRU model's performance, visualizing the true positives, true negatives, false positives, and false negatives.
+## Autoencoder
 
-- `lstm confusion matrix.png`: A confusion matrix of the LSTM model's performance.
+An Autoencoder was implemented to understand the semantics of the text data, which was then used for unsupervised learning using KMeans clustering.
 
-## How to Use
+## Results
 
-1. Clone this repository to your local machine.
-2. Ensure that you have the necessary Python libraries installed (as mentioned in the Python file).
-3. Unzip `depression_dataset_reddit_cleaned.csv.zip` to get the dataset.
-4. Execute `DEPRESSION_DETECTION_USING_LSTM.py` to replicate the project.
+The models' performance was evaluated based on precision, recall, F1-score, and accuracy. The results are as follows:
 
-## Requirements
+| Model  | Precision | Recall | F1-Score | Accuracy |
+| ------ | --------- | ------ | -------- | -------- |
+| GRU    | 0.51      | 0.51   | 0.51     | 0.51     |
+| LSTM   | 0.95      | 0.95   | 0.95     | 0.95     |
+| BERT   | 0.96      | 0.96   | 0.96     | 0.96     |
+| FFNN   | 0.99      | 0.99   | 0.99     | 0.99     |
+| BiLSTM | 0.96      | 0.96   | 0.96     | 0.95     |
 
-- Python 3.7+
-- Libraries: Pandas, NumPy, Matplotlib, Seaborn, TensorFlow, scikit-learn, NLTK
+Graphical and tabular comparisons between these models are available in the 'RESULTS.pdf' file.
 
-**Note**: While this project aims to build a model for depression detection based on text data, it should not serve as a substitute for professional diagnosis. For advice and treatment, always consult with a licensed healthcare professional.
+## Repository Files
 
-## Contributions
-
-Contributions, issues, and feature requests are welcome. For major changes, please open an issue first to discuss your proposals.
-
-## License
-
-This project is distributed under the MIT License - see the [LICENSE] file for more details.
-
-## Contact
-
- Ritabrata Chakraborty-ritabrata04@gmail.com
-
-Project Link: https://github.com/Ritabrata04/Depression-Detection-Using-LSTM-And-GRU
-
-Feel free to reach out if you have any questions or need further clarification about the project.
+1. **Baseline.py:** Contains the code for the implementation of the FFNN model.
+2. **BERT.py:** Contains the code for the implementation of the BERT model.
+3. **DATA VISUALISATION.py:** Contains the code for various data visualization techniques implemented on the dataset.
+4. **DEPRESSION_DETECTION_USING_LSTM_AND_GRU.py:** Contains the code for the implementation of both the LSTM and GRU models.
+5. **RESULTS.pdf:** Contains graphical and tabular comparisons between the implemented models.
+6. **wordcloud_depression.png:** A wordcloud visualization showing the most common words in depression-related sentence threads.
+   
+Please note that you might need to install specific Python libraries to be able to run these scripts, and be sure to adjust the path of the data according to your local setup.
